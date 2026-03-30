@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   GestureResponderEvent,
   Animated,
 } from "react-native";
@@ -62,6 +61,27 @@ const LifeCounter: React.FC = () => {
     ]).start();
   };
 
+  const triggerPoisonFlash = (
+    flash: Animated.Value,
+    setColor: (c: string) => void
+  ) => {
+    setColor("rgba(34,255,0,0.35)");
+    flash.setValue(0);
+
+    Animated.sequence([
+      Animated.timing(flash, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(flash, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.playerContainer, styles.rotated]}>
@@ -73,7 +93,7 @@ const LifeCounter: React.FC = () => {
           ]}
         />
         <Text style={styles.poison}>{poison1}</Text>
-        
+
         <Text style={styles.life}>{player1}</Text>
 
         <View style={styles.sideButtonsRight}>
@@ -113,6 +133,17 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => {
+            setPoison1((prev) => Math.min(10, prev + 1));
+            triggerPoisonFlash(flash1, setFlashColor1);
+          }}
+        >
+          <Text style={styles.poisonButtonText}>+ </Text>
+          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.divider} />
@@ -125,8 +156,7 @@ const LifeCounter: React.FC = () => {
             { opacity: flash2, backgroundColor: flashColor2 },
           ]}
         />
-        
-        <Text style={styles.poison}>{poison1}</Text>
+        <Text style={styles.poison}>{poison2}</Text>
 
 
         <Text style={styles.life}>{player2}</Text>
@@ -168,6 +198,17 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => {
+            setPoison2((prev) => Math.min(10, prev + 1));
+            triggerPoisonFlash(flash2, setFlashColor2);
+          }}
+        >
+          <Text style={styles.poisonButtonText}>+ </Text>
+          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
       <View style={styles.centerMenu}>
         <View style={styles.menuContainer}>
@@ -209,4 +250,3 @@ const LifeCounter: React.FC = () => {
 };
 
 export default LifeCounter;
-
