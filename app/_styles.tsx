@@ -113,4 +113,24 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12, // 👈 área de clique melhor
     paddingVertical: 8,
   },
+
+  poisonButton: {
+    position: "absolute",
+    bottom: 24,
+    alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    backgroundColor: "#000000",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+
+  poisonButtonText: {
+    color: "#22ff00",
+    fontSize: 20,
+    fontWeight: "bold",
+    lineHeight: 20,
+  },
 });
