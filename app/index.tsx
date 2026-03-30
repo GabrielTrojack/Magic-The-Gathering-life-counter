@@ -61,6 +61,27 @@ const LifeCounter: React.FC = () => {
     ]).start();
   };
 
+  const triggerPoisonFlash = (
+    flash: Animated.Value,
+    setColor: (c: string) => void
+  ) => {
+    setColor("rgba(34,255,0,0.35)");
+    flash.setValue(0);
+
+    Animated.sequence([
+      Animated.timing(flash, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(flash, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.playerContainer, styles.rotated]}>
