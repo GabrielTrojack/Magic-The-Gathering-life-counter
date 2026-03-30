@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   GestureResponderEvent,
   Animated,
 } from "react-native";
@@ -73,7 +72,7 @@ const LifeCounter: React.FC = () => {
           ]}
         />
         <Text style={styles.poison}>{poison1}</Text>
-        
+
         <Text style={styles.life}>{player1}</Text>
 
         <View style={styles.sideButtonsRight}>
@@ -113,6 +112,14 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => setPoison1((prev) => prev + 1)}
+        >
+          <Text style={styles.poisonButtonText}>+</Text>
+          <Droplet size={16} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.divider} />
@@ -125,8 +132,7 @@ const LifeCounter: React.FC = () => {
             { opacity: flash2, backgroundColor: flashColor2 },
           ]}
         />
-        
-        <Text style={styles.poison}>{poison1}</Text>
+        <Text style={styles.poison}>{poison2}</Text>
 
 
         <Text style={styles.life}>{player2}</Text>
@@ -168,6 +174,14 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => setPoison2((prev) => prev + 1)}
+        >
+          <Text style={styles.poisonButtonText}>+</Text>
+          <Droplet size={16} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
       <View style={styles.centerMenu}>
         <View style={styles.menuContainer}>
@@ -209,4 +223,3 @@ const LifeCounter: React.FC = () => {
 };
 
 export default LifeCounter;
-
