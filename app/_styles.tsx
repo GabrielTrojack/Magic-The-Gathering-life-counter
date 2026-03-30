@@ -124,22 +124,21 @@ export const styles = StyleSheet.create({
 
   poisonButton: {
     position: "absolute",
-    bottom: 36,
+    bottom: 24,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 6,
     backgroundColor: "#000000",
-    borderRadius: 16,
-    paddingHorizontal: 18,
-    paddingVertical: 14,
-    zIndex: 2,
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
   },
 
   poisonButtonText: {
     color: "#22ff00",
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    lineHeight: 24,
+    lineHeight: 20,
   },
 });

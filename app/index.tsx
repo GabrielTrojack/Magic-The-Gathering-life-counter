@@ -136,13 +136,10 @@ const LifeCounter: React.FC = () => {
 
         <TouchableOpacity
           style={styles.poisonButton}
-          onPress={() => {
-            setPoison1((prev) => Math.min(10, prev + 1));
-            triggerPoisonFlash(flash1, setFlashColor1);
-          }}
+          onPress={() => setPoison1((prev) => prev + 1)}
         >
-          <Text style={styles.poisonButtonText}>+ </Text>
-          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+          <Text style={styles.poisonButtonText}>+</Text>
+          <Droplet size={16} color="#22ff00" fill="#22ff00" />
         </TouchableOpacity>
       </View>
 
@@ -201,13 +198,10 @@ const LifeCounter: React.FC = () => {
 
         <TouchableOpacity
           style={styles.poisonButton}
-          onPress={() => {
-            setPoison2((prev) => Math.min(10, prev + 1));
-            triggerPoisonFlash(flash2, setFlashColor2);
-          }}
+          onPress={() => setPoison2((prev) => prev + 1)}
         >
-          <Text style={styles.poisonButtonText}>+ </Text>
-          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+          <Text style={styles.poisonButtonText}>+</Text>
+          <Droplet size={16} color="#22ff00" fill="#22ff00" />
         </TouchableOpacity>
       </View>
       <View style={styles.centerMenu}>
