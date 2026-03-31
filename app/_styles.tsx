@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f172a",
+    overflow: "hidden",
   },
 
   playerContainer: {
@@ -74,6 +74,42 @@ export const styles = StyleSheet.create({
 
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
+  },
+
+  sunGlow: {
+    position: "absolute",
+    top: 40,
+    right: 40,
+    width: 170,
+    height: 170,
+    borderRadius: 999,
+    opacity: 0.65,
+    shadowOpacity: 0.6,
+    shadowRadius: 28,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 4,
+  },
+
+  sunCore: {
+    position: "absolute",
+    top: 80,
+    right: 85,
+    width: 82,
+    height: 82,
+    borderRadius: 999,
+    opacity: 0.9,
+  },
+
+  wipeShape: {
+    position: "absolute",
+    top: -220,
+    left: -220,
+    zIndex: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
   },
 
   centerMenu: {
