@@ -4,12 +4,12 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   GestureResponderEvent,
   Animated,
 } from "react-native";
 
 import { styles } from "./_styles";
+import { ResetGameModal } from "@/components/reset-game-modal";
 
 type ButtonProps = {
   label: string;
@@ -38,6 +38,19 @@ const LifeCounter: React.FC = () => {
 
   const [flashColor1, setFlashColor1] = useState("transparent");
   const [flashColor2, setFlashColor2] = useState("transparent");
+  const [isResetModalVisible, setIsResetModalVisible] = useState(false);
+
+  const resetGame = () => {
+    setPlayer1(20);
+    setPlayer2(20);
+    setPoison1(0);
+    setPoison2(0);
+    setFlashColor1("transparent");
+    setFlashColor2("transparent");
+    flash1.setValue(0);
+    flash2.setValue(0);
+    setIsResetModalVisible(false);
+  };
 
   const triggerFlash = (
     flash: Animated.Value,
@@ -62,6 +75,27 @@ const LifeCounter: React.FC = () => {
     ]).start();
   };
 
+  const triggerPoisonFlash = (
+    flash: Animated.Value,
+    setColor: (c: string) => void
+  ) => {
+    setColor("rgba(34,255,0,0.35)");
+    flash.setValue(0);
+
+    Animated.sequence([
+      Animated.timing(flash, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(flash, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   return (
     <View style={styles.container}>
       <View style={[styles.playerContainer, styles.rotated]}>
@@ -72,8 +106,8 @@ const LifeCounter: React.FC = () => {
             { opacity: flash1, backgroundColor: flashColor1 },
           ]}
         />
-        <Text style={styles.poison}>{poison1}</Text>
-        
+        {poison1 > 0 && <Text style={styles.poison}>{poison1}</Text>}
+
         <Text style={styles.life}>{player1}</Text>
 
         <View style={styles.sideButtonsRight}>
@@ -113,6 +147,17 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => {
+            setPoison1((prev) => Math.min(10, prev + 1));
+            triggerPoisonFlash(flash1, setFlashColor1);
+          }}
+        >
+          <Text style={styles.poisonButtonText}>+ </Text>
+          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.divider} />
@@ -125,8 +170,7 @@ const LifeCounter: React.FC = () => {
             { opacity: flash2, backgroundColor: flashColor2 },
           ]}
         />
-        
-        <Text style={styles.poison}>{poison1}</Text>
+        {poison2 > 0 && <Text style={styles.poison}>{poison2}</Text>}
 
 
         <Text style={styles.life}>{player2}</Text>
@@ -168,6 +212,17 @@ const LifeCounter: React.FC = () => {
             }}
           />
         </View>
+
+        <TouchableOpacity
+          style={styles.poisonButton}
+          onPress={() => {
+            setPoison2((prev) => Math.min(10, prev + 1));
+            triggerPoisonFlash(flash2, setFlashColor2);
+          }}
+        >
+          <Text style={styles.poisonButtonText}>+ </Text>
+          <Droplet size={20} color="#22ff00" fill="#22ff00" />
+        </TouchableOpacity>
       </View>
       <View style={styles.centerMenu}>
         <View style={styles.menuContainer}>
@@ -182,7 +237,7 @@ const LifeCounter: React.FC = () => {
 
           <TouchableOpacity 
             style={styles.menuIconButton}
-            onPress={() => console.log("undo")}>
+            onPress={() => setIsResetModalVisible(true)}>
             <Undo size={22} color="#e2e8f0" />
           </TouchableOpacity>
 
@@ -204,9 +259,14 @@ const LifeCounter: React.FC = () => {
 
         </View>
       </View>      
+
+      <ResetGameModal
+        visible={isResetModalVisible}
+        onCancel={() => setIsResetModalVisible(false)}
+        onConfirm={resetGame}
+      />
     </View>
   );
 };
 
 export default LifeCounter;
-

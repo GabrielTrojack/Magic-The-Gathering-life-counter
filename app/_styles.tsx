@@ -11,22 +11,26 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
+    paddingVertical: 16,
   },
 
   life: {
     fontSize: 80,
     color: "#ffffff",
     fontWeight: "bold",
-    textAlign: "center", // 👈 garante centralização perfeita
+    textAlign: "center",
+    alignSelf: "center",
+    zIndex: 2,
   },
 
   poison: {
     position: "absolute",
-    top: 40,              // 👈 mais colado no topo
+    top: 56,
     alignSelf: "center",
-    fontSize: 36,         // 👈 melhor proporção com life
+    fontSize: 36,
     color: "#22ff00",
     fontWeight: "bold",
+    zIndex: 2,
   },
 
   divider: {
@@ -38,13 +42,17 @@ export const styles = StyleSheet.create({
   sideButtonsLeft: {
     position: "absolute",
     left: 20,
-    top: "35%", // 👈 leve ajuste visual
+    top: "50%",
+    transform: [{ translateY: -70 }],
+    zIndex: 2,
   },
 
   sideButtonsRight: {
     position: "absolute",
     right: 20,
-    top: "35%", // 👈 leve ajuste visual
+    top: "50%",
+    transform: [{ translateY: -70 }],
+    zIndex: 2,
   },
 
   button: {
@@ -112,5 +120,86 @@ export const styles = StyleSheet.create({
   menuIconButton: {
     paddingHorizontal: 12, // 👈 área de clique melhor
     paddingVertical: 8,
+  },
+
+  poisonButton: {
+    position: "absolute",
+    bottom: 36,
+    alignSelf: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    backgroundColor: "#000000",
+    borderRadius: 16,
+    paddingHorizontal: 18,
+    paddingVertical: 14,
+    zIndex: 2,
+  },
+
+  poisonButtonText: {
+    color: "#22ff00",
+    fontSize: 24,
+    fontWeight: "bold",
+    lineHeight: 24,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.55)",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+
+  modalCard: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: "#111827",
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#334155",
+    padding: 20,
+  },
+
+  modalTitle: {
+    color: "#f8fafc",
+    fontSize: 22,
+    fontWeight: "700",
+    marginBottom: 8,
+    textAlign: "center",
+  },
+
+  modalDescription: {
+    color: "#cbd5e1",
+    fontSize: 15,
+    textAlign: "center",
+    marginBottom: 18,
+  },
+
+  modalActions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+
+  modalButton: {
+    flex: 1,
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+
+  cancelButton: {
+    backgroundColor: "#475569",
+  },
+
+  resetButton: {
+    backgroundColor: "#dc2626",
+  },
+
+  modalButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
   },
 });
