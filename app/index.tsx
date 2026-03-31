@@ -35,8 +35,8 @@ const ActionButton: React.FC<ButtonProps> = ({ label, color, onPress }) => (
 );
 
 const ThemeBackground: React.FC<{ theme: AppTheme }> = ({ theme }) => (
-  <View style={StyleSheet.absoluteFillObject}>
-    <Svg width="100%" height="100%" style={StyleSheet.absoluteFillObject}>
+  <View style={styles.absoluteFill}>
+    <Svg width="100%" height="100%" style={styles.absoluteFill}>
       <Defs>
         <LinearGradient id={`sky-${theme.name}`} x1="0" y1="0" x2="0" y2="1">
           <Stop offset="0%" stopColor={theme.backgroundGradient[0]} />
@@ -100,7 +100,7 @@ const LifeCounter: React.FC = () => {
     ]).start();
   };
 
-  const triggerPoisonFlash = (flash: Animated.Value, setColor: (c: string) => void) => {
+  const runPoisonFlash = (flash: Animated.Value, setColor: (c: string) => void) => {
     setColor("rgba(34,255,0,0.35)");
     flash.setValue(0);
 
@@ -171,32 +171,11 @@ const LifeCounter: React.FC = () => {
 
   const wipeSize = Math.max(width, height) * 1.7;
 
-  const triggerPoisonFlash = (
-    flash: Animated.Value,
-    setColor: (c: string) => void
-  ) => {
-    setColor("rgba(34,255,0,0.35)");
-    flash.setValue(0);
-
-    Animated.sequence([
-      Animated.timing(flash, {
-        toValue: 1,
-        duration: 150,
-        useNativeDriver: true,
-      }),
-      Animated.timing(flash, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
-
   return (
     <View style={styles.container}>
       <ThemeBackground theme={previewTheme} />
 
-      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFillObject, topLayerAnimatedStyle]}>
+      <Reanimated.View pointerEvents="none" style={[styles.absoluteFill, topLayerAnimatedStyle]}>
         <ThemeBackground theme={currentTheme} />
       </Reanimated.View>
 
@@ -267,7 +246,7 @@ const LifeCounter: React.FC = () => {
           style={[styles.poisonButton, { backgroundColor: currentTheme.poisonButtonBg }]}
           onPress={() => {
             setPoison1((prev) => Math.min(10, prev + 1));
-            triggerPoisonFlash(flash1, setFlashColor1);
+            runPoisonFlash(flash1, setFlashColor1);
           }}
         >
           <Text style={[styles.poisonButtonText, { color: currentTheme.poison }]}>+ </Text>
@@ -282,7 +261,6 @@ const LifeCounter: React.FC = () => {
           pointerEvents="none"
           style={[styles.flashOverlay, { opacity: flash2, backgroundColor: flashColor2 }]}
         />
-        {poison2 > 0 && <Text style={styles.poison}>{poison2}</Text>}
 
         {poison2 > 0 && <Text style={[styles.poison, { color: currentTheme.poison }]}>{poison2}</Text>}
         <Text style={[styles.life, { color: currentTheme.textPrimary }]}>{player2}</Text>
@@ -329,7 +307,7 @@ const LifeCounter: React.FC = () => {
           style={[styles.poisonButton, { backgroundColor: currentTheme.poisonButtonBg }]}
           onPress={() => {
             setPoison2((prev) => Math.min(10, prev + 1));
-            triggerPoisonFlash(flash2, setFlashColor2);
+            runPoisonFlash(flash2, setFlashColor2);
           }}
         >
           <Text style={[styles.poisonButtonText, { color: currentTheme.poison }]}>+ </Text>
@@ -352,8 +330,9 @@ const LifeCounter: React.FC = () => {
 
           <TouchableOpacity
             style={styles.menuIconButton}
-            onPress={() => setIsResetModalVisible(true)}>
-            <RotateCcw size={22} color="#e2e8f0" />
+            onPress={() => setIsResetModalVisible(true)}
+          >
+            <Undo size={22} color={currentTheme.menuIcon} />
           </TouchableOpacity>
 
           <View style={[styles.separator, { backgroundColor: currentTheme.menuSeparator }]} />
