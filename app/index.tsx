@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dices, Settings, Undo, ScrollText, Droplet } from "lucide-react-native";
+import { Dices, Settings, RotateCcw, ScrollText, Droplet } from "lucide-react-native";
 import {
   View,
   Text,
@@ -136,7 +136,10 @@ const LifeCounter: React.FC = () => {
 
         <TouchableOpacity
           style={styles.poisonButton}
-          onPress={() => setPoison1((prev) => prev + 1)}
+          onPress={() => {
+            setPoison1((prev) => prev + 1);
+            triggerPoisonFlash(flash1, setFlashColor1);
+          }}
         >
           <Text style={styles.poisonButtonText}>+</Text>
           <Droplet size={16} color="#22ff00" fill="#22ff00" />
@@ -198,7 +201,11 @@ const LifeCounter: React.FC = () => {
 
         <TouchableOpacity
           style={styles.poisonButton}
-          onPress={() => setPoison2((prev) => prev + 1)}
+          onPress={() => {
+            setPoison2((prev) => prev + 1);
+            triggerPoisonFlash(flash2, setFlashColor2);
+
+          }}
         >
           <Text style={styles.poisonButtonText}>+</Text>
           <Droplet size={16} color="#22ff00" fill="#22ff00" />
@@ -218,7 +225,7 @@ const LifeCounter: React.FC = () => {
           <TouchableOpacity 
             style={styles.menuIconButton}
             onPress={() => console.log("undo")}>
-            <Undo size={22} color="#e2e8f0" />
+            <RotateCcw size={22} color="#e2e8f0" />
           </TouchableOpacity>
 
           <View style={styles.separator} />

@@ -124,7 +124,7 @@ export const styles = StyleSheet.create({
 
   poisonButton: {
     position: "absolute",
-    bottom: 24,
+    bottom: 50,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
