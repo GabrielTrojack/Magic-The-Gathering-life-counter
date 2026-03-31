@@ -238,7 +238,7 @@ const LifeCounter: React.FC = () => {
           <TouchableOpacity 
             style={styles.menuIconButton}
             onPress={() => setIsResetModalVisible(true)}>
-            <Undo size={22} color="#e2e8f0" />
+            <RotateCcw size={22} color="#e2e8f0" />
           </TouchableOpacity>
 
           <View style={styles.separator} />
