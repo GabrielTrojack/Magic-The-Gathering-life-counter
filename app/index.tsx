@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dices, Settings, Undo, ScrollText, Droplet } from "lucide-react-native";
+import { Dices, Settings, RotateCcw, ScrollText, Droplet } from "lucide-react-native";
 import {
   View,
   Text,
