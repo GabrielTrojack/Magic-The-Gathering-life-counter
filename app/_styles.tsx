@@ -137,8 +137,68 @@ export const styles = StyleSheet.create({
 
   poisonButtonText: {
     color: "#22ff00",
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    lineHeight: 20,
+    lineHeight: 24,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.55)",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+
+  modalCard: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: "#111827",
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#334155",
+    padding: 20,
+  },
+
+  modalTitle: {
+    color: "#f8fafc",
+    fontSize: 22,
+    fontWeight: "700",
+    marginBottom: 8,
+    textAlign: "center",
+  },
+
+  modalDescription: {
+    color: "#cbd5e1",
+    fontSize: 15,
+    textAlign: "center",
+    marginBottom: 18,
+  },
+
+  modalActions: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+
+  modalButton: {
+    flex: 1,
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+
+  cancelButton: {
+    backgroundColor: "#475569",
+  },
+
+  resetButton: {
+    backgroundColor: "#dc2626",
+  },
+
+  modalButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
   },
 });
